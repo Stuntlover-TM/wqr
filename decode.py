@@ -33,9 +33,12 @@ if bit_string:
     if bit_string != "11111111" and len(bit_string) == 8:
         bytes_list.append(bit_string)
 
-result = ""
+result = b""
 
 for wqr_byte in bytes_list:
-    result += chr(int(wqr_byte, 2))
+    byte_value = int(wqr_byte, 2)
+    utf8_byte = bytes([byte_value])
+    result += utf8_byte
 
+result = result.decode("utf-8")
 print(result)
