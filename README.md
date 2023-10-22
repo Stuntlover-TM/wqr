@@ -5,7 +5,7 @@ Some weird "QR" image thing
 ## Usage
 
 ### Encoding
-(WQR can encode and decode all UTF-8 characters.)
+(WQR can encode and decode some, but not all UTF-8 chars)
 
 Make a file called input.txt and put some text that you want to make into a WQR image, then run the `encode.py` file, it should create a file called `wqr.png`,
 which should be very small in size
