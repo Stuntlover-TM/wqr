@@ -1,13 +1,14 @@
 # Weird QR
-Some weird "QR" image that's really just binary
+Some weird "QR" image thing
 (You need to have Pillow installed before running this)
 
 ## Usage
 
 ### Encoding
+(WQR can encode and decode all UTF-8 characters.)
 
 Make a file called input.txt and put some text that you want to make into a WQR image, then run the `encode.py` file, it should create a file called `wqr.png`,
-which will probably be very tiny.
+which should be very small in size
 
 ### Dynamic Mode
 
@@ -20,5 +21,3 @@ To decode a WQR image, simply run `decode.py`, it should output the original tex
 
 ### Example image
 ![Example WQR image](https://raw.githubusercontent.com/Stuntlover-TM/wqr/main/example-21x21-upscaled.png)
-
-Note that this can only encode ASCII characters for now
