@@ -2,19 +2,21 @@ from PIL import Image
 import math
 import numpy as np
 
-dynamic = True
+dynamic = False
 input_string = open("input.txt", "r").read()
 
 black = (0, 0, 0)
 white = (255, 255, 255)
 
-if dynamic:
-    size = math.ceil(math.sqrt(len(input_string) * 8))
-else:
-    size = 32
-image = Image.new('RGB', (size, size), white)
+dynamic_func = math.ceil(math.sqrt(len(input_string) * 8))
 
-pixels = np.full((size, size, 3), white, dtype=np.uint8)
+if dynamic:
+    size = (dynamic_func, dynamic_func)
+else:
+    size = (32, 32)
+image = Image.new('RGB', (size[0], size[1]), white)
+
+pixels = np.full((size[0], size[1], 3), white, dtype=np.uint8)
 
 x, y = 0, 0
 
@@ -24,7 +26,7 @@ for char in input_string:
         if bit == '0':
             pixels[y, x] = black
         x += 1
-        if x == size:
+        if x == size[1]:
             y += 1
             x = 0
 
