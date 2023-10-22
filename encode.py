@@ -1,9 +1,6 @@
 from PIL import Image
 import math
 import numpy as np
-import time
-
-start = time.time()
 
 dynamic = True
 input_string = open("input.txt", "r").read()
@@ -34,6 +31,3 @@ for char in input_string:
 image = Image.fromarray(pixels)
 
 image.save("wqr.png")
-
-time_taken = time.time() - start
-print(time_taken)
