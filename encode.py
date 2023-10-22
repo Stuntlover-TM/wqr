@@ -1,43 +1,39 @@
 from PIL import Image
 import math
+import numpy as np
+import time
+
+start = time.time()
 
 dynamic = True
 input_string = open("input.txt", "r").read()
 
-if dynamic:
-    width, height = math.ceil(math.sqrt(len(input_string) * 8)), math.ceil(math.sqrt(len(input_string) * 8))
-else:
-    width, height = 32, 32
-image = Image.new('RGB', (width, height), (255, 255, 255))
-
-if len(input_string) > (width*height) // 8 and not dynamic:
-    print(f"Input size exceeded limit, reduce by {len(input_string) - (width*height) // 8}")
-    exit()
-
-bytes_list = []
-
-for char in input_string:
-    bytes_list.append(str(bin(ord(char)))[2:].rjust(8, "0"))
-
 black = (0, 0, 0)
 white = (255, 255, 255)
 
+if dynamic:
+    size = math.ceil(math.sqrt(len(input_string) * 8))
+else:
+    size = 32
+image = Image.new('RGB', (size, size), white)
+
+pixels = np.full((size, size, 3), white, dtype=np.uint8)
+
 x, y = 0, 0
 
-for bit_string in bytes_list:
-    for bit in bit_string:
-        if bit == "0":
-            pixel_value = black
-        else:
-            pixel_value = white
-
-        image.putpixel((x, y), pixel_value)
+for char in input_string:
+    binary_char = format(ord(char), '08b')
+    for bit in binary_char:
+        if bit == '0':
+            pixels[y, x] = black
         x += 1
-        if x == width:
+        if x == size:
             y += 1
             x = 0
-        if y == height:
-            y = 0
-            x = 0
+
+image = Image.fromarray(pixels)
 
 image.save("wqr.png")
+
+time_taken = time.time() - start
+print(time_taken)
