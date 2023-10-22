@@ -2,7 +2,7 @@ from PIL import Image
 import math
 import numpy as np
 
-dynamic = False
+dynamic = True
 input_string = open("input.txt", "r").read()
 
 black = (0, 0, 0)
